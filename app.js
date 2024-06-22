@@ -19,15 +19,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Declare static file public
 app.use(express.static("public"));
 
-// Get request
+// Get requests
 app.get("/", (req, res) => {
-  res.render("signup.ejs");
+  res.render("main.ejs");
 });
 
-// // Post data
-// app.post("/submit", (req, res) => {
-//   res.send(`<h1>Your band name is:</h1><h2>${bandName}✌️</h2>`);
-// });
+app.get("/signin", (req, res) => {
+  res.render("login.ejs");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup.ejs");
+});
 
 // Listening port
 app.listen(port, () => {
