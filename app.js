@@ -16,16 +16,18 @@ const port = 3000;
 
 // This line let us use .body method
 app.use(bodyParser.urlencoded({ extended: true }));
+// Declare static file public
+app.use(express.static("public"));
 
 // Get request
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.render("main.ejs");
 });
 
-// Post data
-app.post("/submit", (req, res) => {
-  res.send(`<h1>Your band name is:</h1><h2>${bandName}✌️</h2>`);
-});
+// // Post data
+// app.post("/submit", (req, res) => {
+//   res.send(`<h1>Your band name is:</h1><h2>${bandName}✌️</h2>`);
+// });
 
 // Listening port
 app.listen(port, () => {
