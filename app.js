@@ -21,7 +21,7 @@ app.use(express.static("public"));
 
 // Get request
 app.get("/", (req, res) => {
-  res.render("main.ejs");
+  res.render("signup.ejs");
 });
 
 // // Post data
