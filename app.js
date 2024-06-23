@@ -89,6 +89,22 @@ app.post("/send-otp", (req, res) => {
     });
 });
 
+app.post("/reset-password", async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    await db.query("UPDATE auth SET password = $1 WHERE email = $2", [
+      hashedPassword,
+      email,
+    ]);
+    res.status(200).send({ success: true });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).send({ success: false, error: error.message });
+  }
+});
+
 app.post("/register", async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
